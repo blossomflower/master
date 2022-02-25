@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Sign Up </title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
+        <script src="https://designer.igniteui.com/js/infragistics.core.js"></script>
+        <script src="https://designer.igniteui.com/js/infragistics.lob.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
+        <script src="https://designer.igniteui.com/js/infragistics.core.js"></script>
+        <script src="https://designer.igniteui.com/js/infragistics.lob.js"></script>
+        <script type="text/javascript" src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript"
+            src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+    <style>
+        .nav-bar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .nav-bar-li {
+            float: right;
+        }
+
+        li a {
+            display: block;
+            padding: 8px;
+            font-size: x-large;
+        }
+        a {
+            display: block;
+            padding: 8px;
+            font-size: x-large;
+        }
+
+        .background {
+            background-color: aliceblue;
+        }
+
+        .header {
+            padding: 15px;
+            text-align: center;
+            background: aliceblue;
+            color: dimgray;
+            font-size: 15px;
+        }
+
+        footer {
+            Width: 100%;
+            bottom: 0;
+            text-align: center;
+            padding: 3px;
+            background-color: aliceblue;
+            color: dimgray;
+        }
+
+        .image-bg {
+            background-image: src("images/college.jpeg");
+        }
+
+        .font_style {
+            padding: 15px;
+            color: dimgray;
+            font-size: 20px;
+        }
+
+        input,
+        select {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+
+
+        button {
+            background-color: gray;
+            /* Green */
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 12px;
+            width: 100%;
+
+        }
+
+        label {
+            font-weight: bold;
+            float: left;
+            width: 10%;
+            padding: 15px 32px;
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h3>STUDENT ATTTENDENCE MANAGEMENT SYSTEM</h3>
+    </div>
+    <div class="container text-center">
+        <div style="text-align: center">
+            <div style="margin-left: auto; margin-right: auto;">
+                <h1 style="color: dimgray;">WELCOME ADMIN
+                <div  style="float: right;">
+                    <button type="submit" name="action" value="submit" onclick='logout();'>Logout</button>
+                </div>
+                </h1>
+            </div>
+            <div class="container text-center background">
+
+                <ul class="nav-bar ">
+                    <li class="nav-bar-li"><a href="/getAllTeachers">FACULTY</a></li>
+                    <li class="nav-bar-li"><a href="/getAllStudents">STUDENT</a></li>
+                </ul>
+
+
+            </div>
+        </div>
+        <div class="font_style">
+            <h2>
+                <p>Update Student : </p>
+            </h2>
+        </div>
+        <form action="#" th:action="@{/updateStudent/{id}(id=${student.id})}" th:object="${student}" method="post">
+            <div class="form-group row">
+                <label class="col-form-label" for="name">Name: </label>
+            <input type="text" th:field="*{name}" id="name" placeholder="NAME" required>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>  <div class="form-group row">
+                <label class="col-form-label"  for="teacherId">Teacher Id: </label>
+            <input type="text" th:field="*{teacherId}" id="teacherId" placeholder="TEACHER ID" required>
+            <span th:if="${#fields.hasErrors('teacherId')}" th:errors="*{teacherId}"  class="col-lg-4 control-label" style="color:red;"></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label" for="studentId">Student Id: </label>
+            <input type="text" th:field="*{studentId}" id="studentId" placeholder="STUDENT ID" required>
+            <span th:if="${#fields.hasErrors('studentId')}" th:errors="*{studentId}"style="color:red;"></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label"  for="rollNo">Roll No</label>
+            <input type="text" th:field="*{rollNo}" id="rollNo" placeholder="ROLL NO" required>
+            <span th:if="${#fields.hasErrors('rollNo')}" th:errors="*{rollNo}"></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label"  for="add"></label>
+            <input type="submit" value="ADD">
+            </div>
+        </form>
+
+    
+    
+        <footer>
+            <p>Author: Anusha Rawat</p>
+            <p><a href="#">Student Attendence Management</a></p>
+
+        </footer>
+    </div>
+    <script>
+        function logout() {
+            $.ajax({
+                type: 'POST',
+                url: "/logout",
+                contentType: 'text/plain',
+                crossDomain: false,
+                async: true,
+                success: function (response) {
+
+                    window.location = '/';
+                }
+            });
+
+
+        }
+    </script>
+</body>
+
+</html>
